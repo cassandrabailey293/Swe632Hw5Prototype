@@ -1,52 +1,88 @@
----
-layout: default
-title: Whoa! Jekyll, Foundation 6, HTML5 boilerplate and github pages!
-description: This is my project. Welcome.
-keywords: github pages, Jekyll, foundation 6
----
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-<section role="main" class="grid-x">
-  <div class="small-12 cell">
-    <h1 class="mvl text-center">{{ page.title }}</h1>
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
 
-    <div class="grid-x">
-      <div class="medium-10 large-8 medium-offset-1 large-offset-2 cell">
-        
-        <p class="mbm">I've combined my locally installed <a href="http://foundation.zurb.com/docs/sass.html">libsass/gulp version of foundation 6</a>, <a href="http://html5boilerplate.com/">html5 boilder plate</a>, and Jekyll to be used for github pages! See <a href="http://jekyllrb.com/docs/home/">Jekyll's documentation</a>, <a href="http://foundation.zurb.com/sites/docs/">the foundation documentations</a>, and <a href="https://help.github.com/categories/20/articles">GitHub pages help pages</a>.</p>
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-        <p class="mbl">You can see all <a href="https://github.com/daigofuji/jekyll-foundation-6-starter/tree/gh-pages"><i class="fab fa-github"></i> my sources here</a>. I created this for my personal use, but if you'd like to use it, please feel free. Shout out to <a href="http://daigo.org">daigo.org</a> or <a href="http://twitter.com/DaigoFuji">@DaigoFuji</a> are appreciated, but not required.</p>
-
-        <div class="callout secondary radius mvl">
-          <p>You should probably update the <samp>_config.yml</samp> file, and edit <samp>scss/_setting.scss</samp> file. As well as <samp>scss/_custom.scss</samp>, where most the overrides are happening.</p>
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">h1.title</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#">nav ul li a</a></li>
+                        <li><a href="#">nav ul li a</a></li>
+                        <li><a href="#">nav ul li a</a></li>
+                    </ul>
+                </nav>
+            </header>
         </div>
 
-      </div>
-    </div>
+        <div class="main-container">
+            <div class="main wrapper clearfix">
 
-    <div class="grid-x"> 
+                <article>
+                    <header>
+                        <h1>article header h1</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec.</p>
+                    </header>
+                    <section>
+                        <h2>article section h2</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
+                    </section>
+                    <section>
+                        <h2>article section h2</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices. Proin in est sed erat facilisis pharetra.</p>
+                    </section>
+                    <footer>
+                        <h3>article footer h3</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor.</p>
+                    </footer>
+                </article>
 
-      <div class="large-4 cell">
-        <p>Updated to support Foundation 6.4 with its awesome <a href="https://foundation.zurb.com/sites/docs/xy-grid.html">XY-Grid</a> and <a href="https://foundation.zurb.com/sites/docs/flexbox-utilities.html">Flexbox Utilities</a>, creating complicated layouts just got a lot simpler. If you are upgrading from old layouts, replace <code>row</code> with <code>grid-x</code> and <code>column</code> with <code>cell</code>.</p>
-      </div>
+                <aside>
+                    <h3>aside</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
+                </aside>
 
-      <div class="large-4 cell">
-        <p>You can also take advantage of Foundation's <a href="https://foundation.zurb.com/sites/docs/">Javascript Utilities</a> out of the box on github pages. Example are shown in <a href="page-foundation-example.html">foundation-example</a> page.</p>
-      </div>
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
 
-      <div class="large-4 cell">
-        <p>And finally, from <a href="page-template-example.html">page-template-example</a> You can <a href="http://foundation.zurb.com/templates.html">get starter templates</a> from foundations for often used patterns and designs.</p>
-      </div>
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3>footer</h3>
+            </footer>
+        </div>
 
-    </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
-    <div class="grid-x">
-      <div class="medium-10 large-8 medium-offset-1 large-offset-2 cell">
-      
-        <p class="mvl">This also supports <a href="https://fontawesome.com/"><i class="fab fa-font-awesome fa-lg"></i>
-        Font Awesome</a> version 5, so you can go crazy with <a href="https://fontawesome.com/icons">the icons</a>: <i class="fab fa-bitcoin fa-lg"></i> <i class="fas fa-spinner fa-pulse fa-lg"></i> <i class="fas fa-beer fa-lg"></i>  <i class="fas fa-hand-peace fa-lg"></i>. </p> 
+        <script src="js/main.js"></script>
 
-      </div>
-    </div>
-
-  </div>
-</section>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>
