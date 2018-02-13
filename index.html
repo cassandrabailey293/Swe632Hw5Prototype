@@ -12,56 +12,66 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
+  <style>
+  .form-check {
+    padding-bottom: 10px
+  }
+  </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
-  </nav>
+  <div class="mx-auto">
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-md-3" href="#">ProCATstinator</a>
+    </nav>
+  </div>
 
   <div class="container-fluid">
     <div class="row">
-      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="catRadio" id="randoCat" value="randoCat" checked>
-              <label class="form-check-label" for="catRadio1">
-                Rando-Cat
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="catRadio" id="tagCat" value="tagCat">
-              <label class="form-check-label" for="catRadio2">
-                Tag, You're Cat! (Tag your cat)
-              </label>
-            </div>
-            <div class="form-check disabled">
-              <input class="form-check-input" type="radio" name="catRadio" id="gifCat" value="gifCat">
-              <label class="form-check-label" for="catRadio3">
-                Cat Gif
-              </label>
-            </div>
-            <div class="form-check disabled">
-              <input class="form-check-input" type="radio" name="catRadio" id="filterCat" value="filterCat">
-              <label class="form-check-label" for="catRadio3">
-                Insta-Cat
-              </label>
-            </div>
-            <div class="form-check disabled">
-              <input class="form-check-input" type="radio" name="catRadio" id="memeCat" value="memeCat">
-              <label class="form-check-label" for="catRadio3">
-                Meme-Cat! What shall the cat say?
-              </label>
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" id="catText" aria-describedby="emailHelp" placeholder="Enter text here">
-            </div>
-            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+      <nav class="col-md-3 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky" style="padding: 20px">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="catRadio" id="randoCat" value="randoCat" checked>
+            <label class="form-check-label" for="catRadio1">
+              Rando-Cat: get a random cat
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="catRadio" id="tagCat" value="tagCat">
+            <label class="form-check-label" for="catRadio2">
+              Tag, You're Cat! Get a cat with a tag (default tag = 'cute')
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="catRadio" id="gifCat" value="gifCat">
+            <label class="form-check-label" for="catRadio3">
+              Cat Gif: cats in action
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="catRadio" id="filterCat" value="filterCat">
+            <label class="form-check-label" for="catRadio3">
+              Insta-Cat: get a cat with a hip filter
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="catRadio" id="memeCat" value="memeCat">
+            <label class="form-check-label" for="catRadio3">
+              Meme-Cat! Add some text to your cat
+            </label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="catText" placeholder=" What shall the cat say?">
+          </div>
+          <button type="submit" class="btn btn-primary" id="submitButton">Pro-cat-stinate!</button>
+          <button type="reset" class="btn btn-primary" id="resetButton">Reset</button>
         </div>
       </nav>
 
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-        <img src="img/defaultCat.jpg" width="500px" height="500px" id="catTainer" alt="Responsive image">
+      <main role="main" class="col-md-9 pt-3 px-4">
+        <div class = "text-center">
+        <img src="img/defaultCat.jpg" height="500px" class="rounded" id="catTainer" alt="Responsive image">
+        </div>
       </main>
     </div>
   </div>
@@ -81,9 +91,40 @@
       //alert( $('input[name=catRadio]:checked').val() );
       var catRadio = $('input[name=catRadio]:checked').val();
       var inputText = $('#catText').val();
-      console.log(catRadio, inputText);
+      var url = processInput(catRadio, inputText);
+      console.log(catRadio, inputText, url);
+      // $.ajax( url, function( data ) {
+      //   $("#catTainer").attr('src', url );
+      //   console.log(data)
+      // });
+      // $.ajax({
+      //   url: url
+      // }).done(function(data) {
+      //   $( this ).addClass( "done" );
+      //   console.log(data)
+      // });
+      $("#catTainer").attr('src', url );
     });
-  })
+    $( "#resetButton" ).click(function() {
+      var inputText = $('#catText').val("");
+      $("#catTainer").attr('src', 'img/defaultCat.jpg' );
+    });
+    function processInput(catRadio, inputText) {
+      var baseURL = "https://cataas.com/cat"
+      switch(catRadio) {
+        case "randoCat":
+        return baseURL ;
+        case "tagCat":
+        return baseURL + "/cute"; //the default tagCat
+        case "gifCat":
+        return baseURL + "/gif";
+        case "filterCat":
+        return baseURL + "?filter=sepia" //the default filter
+        case "memeCat":
+        return baseURL + "/says/" + inputText
+      }
+    }
+  });
   </script>
 </body>
 </html>
