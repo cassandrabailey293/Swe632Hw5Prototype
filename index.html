@@ -61,7 +61,7 @@
             </label>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="catText" placeholder=" What shall the cat say?">
+            <input type="text" class="form-control" id="catText" disabled="true" placeholder=" What shall the cat say?">
           </div>
           <button type="submit" class="btn btn-primary" id="submitButton">Pro-cat-stinate!</button>
           <button type="reset" class="btn btn-primary" id="resetButton">Reset</button>
@@ -70,7 +70,7 @@
 
       <main role="main" class="col-md-9 pt-3 px-4">
         <div class = "text-center">
-        <img src="img/defaultCat.jpg" height="500px" class="rounded" id="catTainer" alt="Responsive image">
+          <img src="img/defaultCat.jpg" height="500px" class="rounded" id="catTainer" alt="Responsive image">
         </div>
       </main>
     </div>
@@ -103,7 +103,8 @@
       //   $( this ).addClass( "done" );
       //   console.log(data)
       // });
-      $("#catTainer").attr('src', url );
+      d = new Date()
+      $("#catTainer").attr('src', url+"?"+d.getTime());
     });
     $( "#resetButton" ).click(function() {
       var inputText = $('#catText').val("");
@@ -124,6 +125,18 @@
         return baseURL + "/says/" + inputText
       }
     }
+    //    button click
+    $('input:radio[name=catRadio]').change(function () {
+      console.log("inside change fxn")
+      if (this.value == 'memeCat') {
+        console.log("should enable the text box")
+        $("#catText").prop("disabled", false)
+      }
+      else {
+        console.log("should disable the text box")
+        $("#catText").prop("disabled", true)
+      }
+    });
   });
   </script>
 </body>
