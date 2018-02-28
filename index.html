@@ -16,6 +16,9 @@
   .form-check {
     padding-bottom: 10px
   }
+  .hidden {
+    display: none;
+  }
   </style>
 </head>
 
@@ -87,6 +90,9 @@
 
       <main role="main" class="col-md-9 pt-3 px-4">
         <div class = "text-center">
+          <div class="alert alert-danger hidden" id="noTextError">
+            <strong>Oops!</strong> Please enter some text for this selection.
+          </div>
           <img src="img/defaultCat.jpg" height="500px" class="rounded" id="catTainer" alt="Responsive image">
         </div>
       </main>
@@ -97,6 +103,7 @@
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
   <!-- Icons -->
@@ -108,13 +115,19 @@
       //alert( $('input[name=catRadio]:checked').val() );
       var catRadio = $('input[name=catRadio]:checked').val();
       var inputText = $('#catText').val();
+      if(inputText.length == 0 && catRadio == 'memeCat') {
+        $("#noTextError").removeClass("hidden");
+      } else {
+        $("#noTextError").addClass("hidden");
+      }
       var url = processInput(catRadio, inputText);
       console.log(catRadio, inputText, url);
       d = new Date()
       $("#catTainer").attr('src', url+"?"+d.getTime());
     });
-    $( "#resetButton" ).click(function() {
+    $("#resetButton").click(function() {
       var inputText = $('#catText').val("");
+      $("#noTextError").addClass("hidden");
       $("#catTainer").attr('src', 'img/defaultCat.jpg' );
     });
     function processInput(catRadio, inputText) {
