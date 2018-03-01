@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard Template for Bootstrap</title>
+  <title>ProCATstinator</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -15,6 +15,9 @@
   <style>
   .form-check {
     padding-bottom: 10px
+  }
+  .hidden {
+    display: none;
   }
   </style>
 </head>
@@ -30,22 +33,22 @@
     <div class="row">
       <nav class="col-md-3 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky" style="padding: 20px">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Welcome!</h5>
+              <p class="card-text">Generate "random" cat images and gifs! Select an option below, and "Pro-cat-stinate!" Using https://cataas.com/#/</p>
+            </div>
+          </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="catRadio" id="randoCat" value="randoCat" checked>
             <label class="form-check-label" for="catRadio1">
-              Rando-Cat: get a random cat
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="catRadio" id="tagCat" value="tagCat">
-            <label class="form-check-label" for="catRadio2">
-              Tag, You're Cat! Get a cat with a tag (default tag = 'cute')
+              Rando-Cat: get a totally random cat
             </label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="catRadio" id="gifCat" value="gifCat">
             <label class="form-check-label" for="catRadio3">
-              Cat Gif: cats in action
+              Cat Gif: always cats in action
             </label>
           </div>
           <div class="form-check">
@@ -55,13 +58,30 @@
             </label>
           </div>
           <div class="form-check">
+            <input class="form-check-input" type="radio" name="catRadio" id="tagCat" value="tagCat">
+            <label class="form-check-label" for="catRadio2">
+              Tag, You're Cat! Get a cat with a tag
+            </label>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Choose a Tag
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" name="tagSelect" id="cute">cute</a>
+              <a class="dropdown-item" name="tagSelect" id="computer">computer</a>
+              <a class="dropdown-item" name="tagSelect" id="kitten">kitten</a>
+              <a class="dropdown-item" name="tagSelect" id="sleepy">sleepy</a>
+            </div>
+          </div>
+          <div class="form-check">
             <input class="form-check-input" type="radio" name="catRadio" id="memeCat" value="memeCat">
             <label class="form-check-label" for="catRadio3">
-              Meme-Cat! Add some text to your cat
+              Meme-Cat! Get a cat with some text
             </label>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="catText" placeholder=" What shall the cat say?">
+            <input type="text" class="form-control" id="catText" disabled="true" placeholder="What shall the cat say?">
           </div>
           <button type="submit" class="btn btn-primary" id="submitButton">Pro-cat-stinate!</button>
           <button type="reset" class="btn btn-primary" id="resetButton">Reset</button>
@@ -70,7 +90,10 @@
 
       <main role="main" class="col-md-9 pt-3 px-4">
         <div class = "text-center">
-        <img src="img/defaultCat.jpg" height="500px" class="rounded" id="catTainer" alt="Responsive image">
+          <div class="alert alert-danger hidden" id="noTextError">
+            <strong>Oops!</strong> Please enter some input for this selection.
+          </div>
+          <img src="img/defaultCat.jpg" height="500px" class="rounded" id="catTainer" alt="Responsive image">
         </div>
       </main>
     </div>
@@ -80,6 +103,7 @@
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
   <!-- Icons -->
@@ -87,35 +111,35 @@
   <!-- Graphs -->
   <script>
   $(document).ready(function() {
+    var tag = $('#tagSelect').val();
     $( "#submitButton" ).click(function() {
-      //alert( $('input[name=catRadio]:checked').val() );
+      var tag = $('#tagSelect').val();
       var catRadio = $('input[name=catRadio]:checked').val();
       var inputText = $('#catText').val();
-      var url = processInput(catRadio, inputText);
+      if(inputText.length == 0 && catRadio == 'memeCat') {
+        $("#noTextError").removeClass("hidden");
+      } else {
+        $("#noTextError").addClass("hidden");
+      }
+      var url = processInput(catRadio, inputText, tag);
       console.log(catRadio, inputText, url);
-      // $.ajax( url, function( data ) {
-      //   $("#catTainer").attr('src', url );
-      //   console.log(data)
-      // });
-      // $.ajax({
-      //   url: url
-      // }).done(function(data) {
-      //   $( this ).addClass( "done" );
-      //   console.log(data)
-      // });
-      $("#catTainer").attr('src', url );
+      d = new Date()
+      $("#catTainer").attr('src', url+"?"+d.getTime());
     });
-    $( "#resetButton" ).click(function() {
+    $("#resetButton").click(function() {
       var inputText = $('#catText').val("");
+      $("#noTextError").addClass("hidden");
       $("#catTainer").attr('src', 'img/defaultCat.jpg' );
     });
-    function processInput(catRadio, inputText) {
+    function processInput(catRadio, inputText, tag) {
       var baseURL = "https://cataas.com/cat"
       switch(catRadio) {
         case "randoCat":
         return baseURL ;
         case "tagCat":
-        return baseURL + "/cute"; //the default tagCat
+        //I tried implementing line 141 but was getting errors. Can't figure it out. 
+        // return baseURL + tag;
+        return baseURL + "/cute";
         case "gifCat":
         return baseURL + "/gif";
         case "filterCat":
@@ -124,6 +148,29 @@
         return baseURL + "/says/" + inputText
       }
     }
+    //    button click
+    $('input:radio[name=catRadio]').change(function () {
+      if (this.value == 'memeCat') {
+        $("#catText").prop("disabled", false)
+      }
+      else {
+        $("#catText").prop("disabled", true)
+      }
+    });
+    $("#tagSelect").change(function () {
+      console.log("inside change fxn")
+      var tagSelection = $('#tagSelect').val()
+      switch(tagSelection) {
+        case "cute":
+            tag = "/cute";
+        case "computer":
+            tag = "/computer"
+        case "kitten":
+            tag = "/kitten"
+        case "sleepy":
+            tag = "/sleepy"
+      }
+    });
   });
   </script>
 </body>
