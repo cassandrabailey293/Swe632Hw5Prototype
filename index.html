@@ -132,9 +132,7 @@
         case "randoCat":
         return baseURL ;
         case "tagCat":
-        //I tried implementing line 141 but was getting errors. Can't figure it out.
         return baseURL + tag;
-        //return baseURL + "/cute";
         case "gifCat":
         return baseURL + "/gif";
         case "filterCat":
@@ -143,7 +141,6 @@
         return baseURL + "/says/" + inputText
       }
     }
-    //    button click
     $('input:radio[name=catRadio]').change(function () {
       if (this.value == 'memeCat') {
         $("#catText").prop("disabled", false)
@@ -152,20 +149,21 @@
         $("#catText").prop("disabled", true)
       }
     });
-    $("#tagSelect").change(function () {
-      console.log("inside change fxn")
-      var tagSelection = $('#tagSelect').val()
-      switch(tagSelection) {
-        case "cute":
-        tag = "/cute";
-        case "computer":
-        tag = "/computer"
-        case "kitten":
-        tag = "/kitten"
-        case "sleepy":
-        tag = "/sleepy"
-      }
-    });
+    //Need to add code that will show/hide the tag selector
+    // $("#tagSelect").change(function () {
+    //   console.log("inside change fxn")
+    //   var tagSelection = $('#tagSelect').val()
+    //   switch(tagSelection) {
+    //     case "cute":
+    //     tag = "/cute";
+    //     case "computer":
+    //     tag = "/computer"
+    //     case "kitten":
+    //     tag = "/kitten"
+    //     case "sleepy":
+    //     tag = "/sleepy"
+    //   }
+    // });
   });
   </script>
 </body>
