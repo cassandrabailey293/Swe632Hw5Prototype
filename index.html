@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Dashboard Template for Bootstrap</title>
+  <title>ProCATstinator</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -68,10 +68,10 @@
               Choose a Tag
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">cute</a>
-              <a class="dropdown-item" href="#">computer</a>
-              <a class="dropdown-item" href="#">kitten</a>
-              <a class="dropdown-item" href="#">sleepy</a>
+              <a class="dropdown-item" name="tagSelect" id="cute">cute</a>
+              <a class="dropdown-item" name="tagSelect" id="computer">computer</a>
+              <a class="dropdown-item" name="tagSelect" id="kitten">kitten</a>
+              <a class="dropdown-item" name="tagSelect" id="sleepy">sleepy</a>
             </div>
           </div>
           <div class="form-check">
@@ -91,7 +91,7 @@
       <main role="main" class="col-md-9 pt-3 px-4">
         <div class = "text-center">
           <div class="alert alert-danger hidden" id="noTextError">
-            <strong>Oops!</strong> Please enter some text for this selection.
+            <strong>Oops!</strong> Please enter some input for this selection.
           </div>
           <img src="img/defaultCat.jpg" height="500px" class="rounded" id="catTainer" alt="Responsive image">
         </div>
@@ -111,8 +111,9 @@
   <!-- Graphs -->
   <script>
   $(document).ready(function() {
+    var tag = $('#tagSelect').val();
     $( "#submitButton" ).click(function() {
-      //alert( $('input[name=catRadio]:checked').val() );
+      var tag = $('#tagSelect').val();
       var catRadio = $('input[name=catRadio]:checked').val();
       var inputText = $('#catText').val();
       if(inputText.length == 0 && catRadio == 'memeCat') {
@@ -120,7 +121,7 @@
       } else {
         $("#noTextError").addClass("hidden");
       }
-      var url = processInput(catRadio, inputText);
+      var url = processInput(catRadio, inputText, tag);
       console.log(catRadio, inputText, url);
       d = new Date()
       $("#catTainer").attr('src', url+"?"+d.getTime());
@@ -130,13 +131,15 @@
       $("#noTextError").addClass("hidden");
       $("#catTainer").attr('src', 'img/defaultCat.jpg' );
     });
-    function processInput(catRadio, inputText) {
+    function processInput(catRadio, inputText, tag) {
       var baseURL = "https://cataas.com/cat"
       switch(catRadio) {
         case "randoCat":
         return baseURL ;
         case "tagCat":
-        return baseURL + "/cute"; //the default tagCat
+        //I tried implementing line 141 but was getting errors. Can't figure it out. 
+        // return baseURL + tag;
+        return baseURL + "/cute";
         case "gifCat":
         return baseURL + "/gif";
         case "filterCat":
@@ -147,14 +150,25 @@
     }
     //    button click
     $('input:radio[name=catRadio]').change(function () {
-      console.log("inside change fxn")
       if (this.value == 'memeCat') {
-        console.log("should enable the text box")
         $("#catText").prop("disabled", false)
       }
       else {
-        console.log("should disable the text box")
         $("#catText").prop("disabled", true)
+      }
+    });
+    $("#tagSelect").change(function () {
+      console.log("inside change fxn")
+      var tagSelection = $('#tagSelect').val()
+      switch(tagSelection) {
+        case "cute":
+            tag = "/cute";
+        case "computer":
+            tag = "/computer"
+        case "kitten":
+            tag = "/kitten"
+        case "sleepy":
+            tag = "/sleepy"
       }
     });
   });
