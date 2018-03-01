@@ -60,24 +60,21 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" name="catRadio" id="tagCat" value="tagCat">
             <label class="form-check-label" for="catRadio2">
-              Tag, You're Cat! Get a cat with a tag
+              Tag, You're Cat! Get a cat with a tag:
             </label>
           </div>
           <div class="btn-group">
-            <button class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Choose a Tag
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" name="tagSelect" id="cute">cute</a>
-              <a class="dropdown-item" name="tagSelect" id="computer">computer</a>
-              <a class="dropdown-item" name="tagSelect" id="kitten">kitten</a>
-              <a class="dropdown-item" name="tagSelect" id="sleepy">sleepy</a>
-            </div>
+            <select class="form-control" id="tagSelect">
+              <option value="/cute">Cute</option>
+              <option value="/computer">Computer</option>
+              <option value="/kitten">Kitten</option>
+              <option value="/sleepy">Sleepy</option>
+            </select>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="catRadio" id="memeCat" value="memeCat">
             <label class="form-check-label" for="catRadio3">
-              Meme-Cat! Get a cat with some text
+              Meme-Cat! Get a cat with some text:
             </label>
           </div>
           <div class="form-group">
@@ -111,9 +108,8 @@
   <!-- Graphs -->
   <script>
   $(document).ready(function() {
-    var tag = $('#tagSelect').val();
     $( "#submitButton" ).click(function() {
-      var tag = $('#tagSelect').val();
+      var tag =  $("#tagSelect").val();
       var catRadio = $('input[name=catRadio]:checked').val();
       var inputText = $('#catText').val();
       if(inputText.length == 0 && catRadio == 'memeCat') {
@@ -122,7 +118,6 @@
         $("#noTextError").addClass("hidden");
       }
       var url = processInput(catRadio, inputText, tag);
-      console.log(catRadio, inputText, url);
       d = new Date()
       $("#catTainer").attr('src', url+"?"+d.getTime());
     });
@@ -137,9 +132,7 @@
         case "randoCat":
         return baseURL ;
         case "tagCat":
-        //I tried implementing line 141 but was getting errors. Can't figure it out. 
-        // return baseURL + tag;
-        return baseURL + "/cute";
+        return baseURL + tag;
         case "gifCat":
         return baseURL + "/gif";
         case "filterCat":
@@ -148,7 +141,6 @@
         return baseURL + "/says/" + inputText
       }
     }
-    //    button click
     $('input:radio[name=catRadio]').change(function () {
       if (this.value == 'memeCat') {
         $("#catText").prop("disabled", false)
@@ -157,20 +149,21 @@
         $("#catText").prop("disabled", true)
       }
     });
-    $("#tagSelect").change(function () {
-      console.log("inside change fxn")
-      var tagSelection = $('#tagSelect').val()
-      switch(tagSelection) {
-        case "cute":
-            tag = "/cute";
-        case "computer":
-            tag = "/computer"
-        case "kitten":
-            tag = "/kitten"
-        case "sleepy":
-            tag = "/sleepy"
-      }
-    });
+    //Need to add code that will show/hide the tag selector
+    // $("#tagSelect").change(function () {
+    //   console.log("inside change fxn")
+    //   var tagSelection = $('#tagSelect').val()
+    //   switch(tagSelection) {
+    //     case "cute":
+    //     tag = "/cute";
+    //     case "computer":
+    //     tag = "/computer"
+    //     case "kitten":
+    //     tag = "/kitten"
+    //     case "sleepy":
+    //     tag = "/sleepy"
+    //   }
+    // });
   });
   </script>
 </body>
