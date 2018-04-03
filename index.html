@@ -64,7 +64,7 @@
             </label>
           </div>
           <div class="btn-group">
-            <select class="form-control" id="tagSelect">
+            <select class="form-control" id="tagSelect" hidden ="true">
               <option value="/cute">Cute</option>
               <option value="/computer">Computer</option>
               <option value="/kitten">Kitten</option>
@@ -78,7 +78,7 @@
             </label>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="catText" disabled="true" placeholder="What shall the cat say?">
+            <input type="text" class="form-control" id="catText" hidden="true" placeholder="What shall the cat say?">
           </div>
           <button type="submit" class="btn btn-primary" id="submitButton">Pro-cat-stinate!</button>
           <button type="reset" class="btn btn-primary" id="resetButton">Reset</button>
@@ -143,10 +143,17 @@
     }
     $('input:radio[name=catRadio]').change(function () {
       if (this.value == 'memeCat') {
-        $("#catText").prop("disabled", false)
+        $("#catText").prop("hidden", false)
       }
       else {
-        $("#catText").prop("disabled", true)
+        $("#catText").prop("hidden", true)
+      }
+      if (this.value == 'tagCat') {
+        $("#tagSelect").prop("hidden", false)
+        console.log("its getting here")
+      }
+      else {
+        $("#tagSelect").prop("hidden", true)
       }
     });
     //Need to add code that will show/hide the tag selector
