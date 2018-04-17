@@ -37,7 +37,7 @@
   <div class="container-fluid">
     <div class="row">
       <nav class="col-md-3 d-none d-md-block bg-light sidebar">
-        <div class="sidebar-sticky" style="padding: 20px; height: 100%">
+        <div class="sidebar-sticky">
           <br><h4>Customize your selection here:</h4><br>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="catRadio" id="randoCat" value="randoCat" checked>
@@ -100,6 +100,10 @@
   </div>
   <br><br>
   <button type="submit" class="btn btn-primary btn-lg btn-block" style="padding: 20px" id="submitButton">Pro-cat-stinate!</button>
+  <audio controls>
+  <source src="thundercat.mp3" type="audio/mpeg" id="songPlayer">
+Your browser does not support the audio element.
+</audio>
 
 
   <!-- Bootstrap core JavaScript
@@ -167,21 +171,20 @@
         $("#tagSelect").prop("hidden", true)
       }
     });
-    //Need to add code that will show/hide the tag selector
-    // $("#tagSelect").change(function () {
-    //   console.log("inside change fxn")
-    //   var tagSelection = $('#tagSelect').val()
-    //   switch(tagSelection) {
-    //     case "cute":
-    //     tag = "/cute";
-    //     case "computer":
-    //     tag = "/computer"
-    //     case "kitten":
-    //     tag = "/kitten"
-    //     case "sleepy":
-    //     tag = "/sleepy"
-    //   }
-    // });
+    window.addEventListener("keypress", function (evt) {
+    var SPACEBAR = 32;
+    if (evt.which === SPACEBAR) {
+        playPause();
+        evt.preventDefault();
+    }
+  });
+  function playPause() {
+    var song = $('#songPlayer')[0]
+    if ($('#songPlayer').prop("paused"))
+        $('.play').trigger("play");
+    else
+        $('.play').trigger("pause");
+    }
   });
   </script>
 </body>
