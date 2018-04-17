@@ -100,7 +100,7 @@
   </div>
   <br><br>
   <button type="submit" class="btn btn-primary btn-lg btn-block" style="padding: 20px" id="submitButton">Pro-cat-stinate!</button>
-  <audio controls>
+  <audio controls autoplay>
   <source src="thundercat.mp3" type="audio/mpeg" id="songPlayer">
 Your browser does not support the audio element.
 </audio>
@@ -179,7 +179,6 @@ Your browser does not support the audio element.
     }
   });
   function playPause() {
-    var song = $('#songPlayer')[0]
     if ($('#songPlayer').prop("paused"))
         $('.play').trigger("play");
     else
