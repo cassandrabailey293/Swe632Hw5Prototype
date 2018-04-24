@@ -25,15 +25,12 @@
 }
   </style>
 </head>
-
 <body>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <div class="mx-auto">
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-md-3" href="#">ProCATstinator</a>
-    </nav>
-  </div>
-
+  <div class="mx-auto bg-light">
+      <img src="img/logo.png" height="50px" class="rounded" alt="Responsive image">
+  <button type="submit" class="btn btn-primary btn-lg btn-block" style="padding: 20px; font-weight: bold" id="submitButton">Pro-CAT-stinate!</button>
+</div>
   <div class="container-fluid">
     <div class="row">
       <nav class="col-md-3 d-none d-md-block bg-light sidebar">
@@ -42,28 +39,28 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" name="catRadio" id="randoCat" value="randoCat" checked>
             <label class="form-check-label" for="catRadio1">
-              Rando-Cat: get a totally random cat
+              Rando-Cat: totally random cats!
             </label>
           </div>
           <br>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="catRadio" id="gifCat" value="gifCat">
             <label class="form-check-label" for="catRadio3">
-              Cat Gif: always cats in action
+              Cat Gif: always cats in action!
             </label>
           </div>
           <br>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="catRadio" id="filterCat" value="filterCat">
             <label class="form-check-label" for="catRadio3">
-              Insta-Cat: get a cat with a hip filter
+              Insta-Cat: hip cats with filters!
             </label>
           </div>
           <br>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="catRadio" id="tagCat" value="tagCat">
             <label class="form-check-label" for="catRadio2">
-              Tag, You're Cat! Get a cat with a tag:
+              Tag, You're Cat! Cats by tag:
             </label>
           </div>
           <div class="btn-group">
@@ -77,11 +74,11 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" name="catRadio" id="memeCat" value="memeCat">
             <label class="form-check-label" for="catRadio3">
-              Meme-Cat! Get a cat with some text:
+              Meme-Cat! Cats with text:
             </label>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="catText" hidden="true" placeholder="What shall the cat say?">
+            <input type="text" class="form-control" id="catText" hidden="true" placeholder="Input text here">
           </div>
             <button type="reset" class="btn btn-outline-dark" id="resetButton">Reset</button>
           <p><small>Using <a href = "https://cataas.com/#/">Cat As A Service</a></small></p>
@@ -93,15 +90,15 @@
           <div class="alert alert-danger hidden" id="noTextError">
             <strong>Oops!</strong> Please enter some input for this selection.
           </div>
+          <br><br>
           <img src="img/defaultCat.jpg" height="500px" class="rounded" id="catTainer" alt="Responsive image">
         </div>
       </main>
     </div>
   </div>
   <br><br>
-  <button type="submit" class="btn btn-primary btn-lg btn-block" style="padding: 20px" id="submitButton">Pro-cat-stinate!</button>
   <br>
-  <audio controls autoplay>
+  <audio controls>
   <source src="thundercat.mp3" type="audio/mpeg" id="songPlayer">
 Your browser does not support the audio element.
 </audio>
